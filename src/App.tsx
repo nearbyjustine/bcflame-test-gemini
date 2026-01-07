@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, act } from 'react';
 import type { FormEvent } from 'react';
 import { 
   Leaf, 
@@ -239,7 +239,8 @@ const Navbar = ({ activeTab, setActiveTab, user, onLogout }: NavbarProps) => {
           <div className="hidden md:flex items-center gap-6">
             <div className="flex items-baseline space-x-4">
               {user.role === 'user' ? (
-                ['Home', 'Inventory', 'Packaging Studio', 'Market Matcher'].map((item) => (
+                // ['Home', 'Inventory', 'Packaging Studio', 'Market Matcher'].map((item) => (
+                ['Home', 'Inventory', 'Packaging Studio'].map((item) => (
                   <button
                     type="button"
                     key={item}
@@ -279,7 +280,8 @@ const Navbar = ({ activeTab, setActiveTab, user, onLogout }: NavbarProps) => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-neutral-900 border-b border-neutral-800">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-             {user.role === 'user' && ['Home', 'Inventory', 'Packaging Studio', 'Market Matcher'].map((item) => (
+             {/* {user.role === 'user' && ['Home', 'Inventory', 'Packaging Studio', 'Market Matcher'].map((item) => ( */}
+             {user.role === 'user' && ['Home', 'Inventory', 'Packaging Studio'].map((item) => (
                 <button
                   type="button"
                   key={item}
@@ -964,8 +966,8 @@ const App = () => {
 
   // Scroll to top when tab changes
   useEffect(() => {
+    console.log('Active Tab Changed:', activeTab);
     window.scrollTo(0, 0);
-     
   }, [activeTab]);
 
   const handleLogin = (userData: User) => {
